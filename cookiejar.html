@@ -14,6 +14,14 @@
   <div class="head">
     <div class="url ui-widget-header ui-corner-all">
       Cookies from: <span id="url"></span>
+      <div class="cookie-counts">
+        <span class="cookie-count">Cookies:
+          <span class="cookie-num" id="normal-cookies">0</span>
+        </span>
+        <span class="cookie-count">Session cookies:
+          <span class="cookie-num" id="session-cookies">0</span>
+        </span>
+      </div>
     </div>
   </div>
   <div id="tabmenu">
@@ -21,10 +29,12 @@
       <li><a href="#lwp-tab">LWP</a></li>
       <li><a href="#mozilla-tab">Mozilla</a></li>
       <li><a href="#omniweb-tab">Omniweb</a></li>
-      <div id="lwp-tab">
-        <label class="session-cookies">
-          <input type="checkbox" class="session-cookies"/>Session Cookies
+      <div class="session-cookies-div">
+        <label id="session-cookies-label" class="session-cookies">
+          <input type="checkbox" id="session-cookies-check"/> Session Cookies
         </label>
+      </div>
+      <div id="lwp-tab">
         <div class="description">
           The LWP format can easily be read by
           <a
@@ -32,32 +42,28 @@
           and by <a
           href="http://docs.python.org/release/2.5.2/lib/file-cookie-jar-classes.html">Python</a>
           programs.
-          The format is slightly richer than the Mozilla format, dates that are
+          The format is slightly richer than the Mozilla format, and dates are
           easier to read.
         </div>
         <textarea id='lwp' class="info" readonly></textarea>
       </div>
       <div id="mozilla-tab">
-        <label class="session-cookies">
-          <input type="checkbox" class="session-cookies"/>Session Cookies
-        </label>
         <div class="description">
           The Mozilla format used to be the way cookies were saved in Firefox, but is no longer the
-          case (now it's stored in SqlLite database).
-          You can read the Mozilla format in
+          case (now it's stored in SQLite database).
+          You can read the Mozilla format with
           <a href="http://docs.python.org/release/2.5.2/lib/file-cookie-jar-classes.html">Python</a>
-          and in Perl.
-          This format is tab delimited and doesn't support all of
+          and
+          <a href="http://search.cpan.org/~gaas/libwww-perl/lib/HTTP/Cookies/Netscape.pm">Perl</a>.
+          This format is not very extensible, is tab delimited and does not support all of
           <a href="https://www2.ietf.org/rfc/rfc2965.txt">RFC 2965</a>.
         </div>
         <textarea id='mozilla' class="info" readonly></textarea>
       </div>
       <div id="omniweb-tab">
-        <label class="session-cookies">
-          <input type="checkbox" class="session-cookies"/>Session Cookies
-        </label>
         <div class="description">
-          The Omniweb format can be read by
+          <a href="http://search.cpan.org/~gaas/libwww-perl/lib/HTTP/Cookies/Netscape.pm">Omniweb</a>
+          is a web browser for the Macintosh.  Their format is in XML and can be read by
           <a href="http://search.cpan.org/~bdfoy/HTTP-Cookies-Omniweb-1.12/lib/Omniweb.pm">Perl</a>.
         </div>
         <textarea id='omni' class="info" readonly></textarea>

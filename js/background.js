@@ -15,6 +15,8 @@
 //
 
 var lastUrl = "";
+var rePattern = new RegExp('^(http[s]?[:]//[^/]+[.][^/.]+)/');
+
 /**
  * @fileoverview Make the center table or div left.
  * @author scottkirkwood@google.com (Scott Kirkwood)
@@ -41,6 +43,9 @@ chrome.extension.onConnect.addListener(
   }
 );
 
+/**
+ * Send the cookie information from the url via chrome API.
+ */
 var sendCookies = function(port, url) {
   chrome.cookies.getAll({
         'url': url
@@ -56,32 +61,25 @@ var sendCookies = function(port, url) {
 };
 
 /**
- * Inject into the page.
- * The second will also execute a function.
+ * Get the page URL and send the cookies to a new page.
+ * @param info OnClickData
+ * @param tab Tab that was clicked.
  */
-var onShowcookies = function() {
-  console.log('Show cookies');
-  chrome.tabs.getSelected(undefined, function(tab) {
-    if (!tab) {
-      console.log('Tab undefined');
-      return;
-    }
-    console.log('full url is: ' + tab.url);
-    var grps = /^(http:\/\/[^\/]+\.[^\/]+)\//.exec(tab.url)
-    lastUrl = '';
-    if (grps) {
-      lastUrl = grps[1];
-    }
-    console.log('domain is:' + lastUrl);
-    chrome.tabs.create({
-        'url': chrome.extension.getURL('cookiejar.html')},
-        function (newTab) {
-          console.log('Window created');
-        });
-  });
+var onShowcookies = function(info, tab) {
+  console.log('full url is: ' + tab.url);
+  var grps = rePattern.exec(tab.url)
+  lastUrl = '';
+  if (grps.length) {
+    lastUrl = grps[1];
+  }
+  console.log('domain is:' + lastUrl);
+  chrome.tabs.create({
+      'url': chrome.extension.getURL('cookiejar.html')},
+      function (newTab) {
+        console.log('Window created');
+      });
 }
 
 chrome.contextMenus.create(
     {"title": "Cookie Contents...", "onclick": onShowcookies});
 
-chrome.browserAction.onClicked.addListener(onShowcookies);

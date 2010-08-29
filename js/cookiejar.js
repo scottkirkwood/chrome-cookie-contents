@@ -1,8 +1,25 @@
+//
+// Copyright 2010 Google Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
 
 var showSessionCookies = false;
 
+
 var setupTabs = function() {
   $('#tabmenu').tabs();
+  $('#session-cookies-check').click(toggleCheckBox);
 };
 
 var port = chrome.extension.connect({name: 'cookies'});
@@ -15,27 +32,39 @@ var selectAllText = function() {
 
 var toggleCheckBox = function(evt) {
   showSessionCookies = !showSessionCookies;
-  $('.session-cookies').attr('checked', showSessionCookies);
   if (showSessionCookies) {
     console.log('Show session cookies');
   } else {
     console.log('Don\'t session cookies');
   }
-  evt.preventDefault();
+  $('#session-cookies-check').attr('checked', showSessionCookies);
   port.postMessage({'cmd': 'getCookies'});
+};
+
+var countSessionCookies = function(cookies) {
+  var sessionCookies = 0;
+  for (var cookie_index in cookies) {
+    var cookie = cookies[cookie_index];
+    if (cookie.session) {
+      sessionCookies += 1;
+    }
+  }
+  return sessionCookies;
 };
 
 port.onMessage.addListener(
   function(msg) {
     if (msg.cmd == 'cookies') {
       console.log('Got cookies message');
-      console.log('len: ' + msg.data.length);
+      var session_cookies = countSessionCookies(msg.data);
+      var normal_cookies = msg.data.length - session_cookies;
       $('#mozilla').text(getCookiesTxtMozilla(msg.data, msg.url));
       $('#lwp').text(getCookiesTxtLwp(msg.data, msg.url));
       $('#omni').text(getCookiesTxtOmniweb(msg.data, msg.url));
       $('#url').text(msg.url);
+      $('#normal-cookies').text(normal_cookies);
+      $('#session-cookies').text(session_cookies);
       $('.info').one('click', selectAllText);
-      $('.session-cookies').click(toggleCheckBox);
     }
   }
 );

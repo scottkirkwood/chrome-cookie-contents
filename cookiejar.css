@@ -34,8 +34,25 @@ div.description {
   font: 1em lucida;
   padding: 15px 1px 5px 0;
 }
-.session-cookies {
+.cookie-counts {
   float: right;
+  vertical-align: middle;
+  padding: 3px 25px 0 0;
+  font: 1em lucida;
+  font-weight: normal;
+}
+.cookie-count {
+  padding: 0 10px 0 10px;
+}
+.cookie-num {
+  margin-left: 10px;
+  font-weight: bold;
+}
+.session-cookies-div {
+  float: right;
+  padding: 15px 40px 0 0;
+}
+label.session-cookies {
   font: 1em lucida;
   font-weight: normal;
 }
