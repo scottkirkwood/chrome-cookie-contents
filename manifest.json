@@ -10,14 +10,9 @@
   },
   "permissions": [
     "cookies",
+    "contextMenus",
     "tabs",
     "http://*/*", "https://*/*"
   ],
-  "background_page": "background.html",
-
-  // Inject jquery
-  "browser_action": {
-    "default_icon": "icon-19.png",
-    "default_title": "CookieJar"
-  }
+  "background_page": "background.html"
 }

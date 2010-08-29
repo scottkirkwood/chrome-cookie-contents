@@ -15,7 +15,6 @@
 //
 
 var lastUrl = "";
-
 /**
  * @fileoverview Make the center table or div left.
  * @author scottkirkwood@google.com (Scott Kirkwood)
@@ -81,5 +80,8 @@ var onShowcookies = function() {
         });
   });
 }
+
+chrome.contextMenus.create(
+    {"title": "Cookie Contents...", "onclick": onShowcookies});
 
 chrome.browserAction.onClicked.addListener(onShowcookies);
