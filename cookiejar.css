@@ -1,0 +1,48 @@
+/*
+ * Copyright 2010 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * Cookie Jar style sheets.
+ */
+
+#textinfo {
+  width: 90%;
+  border: 2px solid #F3F3F3;
+}
+#url {
+  margin-left: 10px;
+  font-weight: bold;
+}
+.url {
+  margin: 3px 1px;
+  padding: 10px 10px;
+  font-weight: normal;
+}
+div.description {
+  clear: left;
+  width: 100%;
+  font: 1em lucida;
+  padding: 15px 1px 5px 0;
+}
+.session-cookies {
+  float: right;
+  font: 1em lucida;
+  font-weight: normal;
+}
+textarea.info {
+  margin-top: 10px;
+  width: 100%;
+  height: 76%;
+  font-size: .8em !important;
+  font-family: Courier New !important;
+}
