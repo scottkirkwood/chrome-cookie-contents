@@ -15,29 +15,25 @@
  * Cookie Jar style sheets.
  */
 
-#textinfo {
-  width: 90%;
-  border: 2px solid #F3F3F3;
+.top-bar {
+  margin: 3px 1px;
+  padding: 10px 10px;
+  font-weight: normal;
 }
 #url {
   margin-left: 10px;
   font-weight: bold;
 }
-.url {
-  margin: 3px 1px;
-  padding: 10px 10px;
-  font-weight: normal;
-}
-div.description {
-  clear: left;
-  width: 100%;
-  font: 1em lucida;
-  padding: 15px 1px 5px 0;
+.cookies-from {
+  display: inline;
+  position: relative;
+  top: -8px;
+  padding: 5px 25px 20px 20px;
 }
 .cookie-counts {
   float: right;
   vertical-align: middle;
-  padding: 3px 25px 0 0;
+  padding: 10px 25px 0 0;
   font: 1em lucida;
   font-weight: normal;
 }
@@ -55,6 +51,16 @@ div.description {
 label.session-cookies {
   font: 1em lucida;
   font-weight: normal;
+}
+div.description {
+  clear: left;
+  width: 100%;
+  font: 1em lucida;
+  padding: 15px 1px 5px 0;
+}
+#textinfo {
+  width: 90%;
+  border: 2px solid #F3F3F3;
 }
 textarea.info {
   margin-top: 10px;

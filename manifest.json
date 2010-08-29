@@ -3,6 +3,7 @@
   "version": "1.0",
   "description": "Show the cookies for this page in text format.",
   "icons": {
+    "default_icon": "icon-16.png",
     "16": "icon-16.png",
     "32": "icon-32.png",
     "48": "icon-48.png",
